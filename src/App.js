@@ -7,16 +7,24 @@ import { Login } from './components/Pages/Login';
 import { Signup } from './components/Pages/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Services } from './components/Services';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { User } from './components/User';
+import { Dashboard } from './components/Pages/user-module/Dashboard';
 function App() {
   return (
+   
      <BrowserRouter>
+       <ToastContainer position='bottom-center'/>
       <Routes>
          <Route path="/" element={<Home/>}/>
          <Route path="/about" element={<About/>}/>
          <Route path="/login" element={<Login/>}/>
          <Route path="/signup" element={<Signup/>}/>
          <Route path="/services" element={<Services/>}/>
+         <Route path="/user" element={<User/>}>
+            <Route path='dashboard' element={<Dashboard/>}/>
+         </Route>
       </Routes>
      
      </BrowserRouter>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Base } from '../Base'
-import { Col, Container, Row,Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Col, Container, Row,Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button ,
+FormFeedback} from 'reactstrap'
 
 import { signup } from '../user-service'
+import { toast } from 'react-toastify'
 
 export const Signup = () => {
 
@@ -33,9 +35,30 @@ export const Signup = () => {
     const handleSubmit= e=>{
         e.preventDefault();
         // console.log('Form Submiited');
-        // console.log(data)
-        signup(data).then(resp=>console.log(resp))
-        .catch(error=>console.log(error))
+        //console.log(data)
+        signup(data)
+        .then(resp=>{
+          toast.success("User Registered Successfully user id "+resp.id)
+          setData({
+            name:'',
+            password:'',
+            email:'',
+            about:''
+          })
+          setError({
+            errors:{},
+            isError:false
+          })
+        })
+        .catch(error=>
+          {
+            console.log(error)
+            setError({
+              errors:error,
+              isError:true
+            })
+          }
+          )
     }
     return (
         
@@ -65,7 +88,11 @@ export const Signup = () => {
                         id='name'
                         name='name'
                         onChange={e=>handleChange(e,'name')}
-                        value={data.name}/>
+                        value={data.name}
+                        invalid={error?.errors?.response?.data?.name?true:false}/>
+                        <FormFeedback>
+                             {error?.errors?.response?.data?.name}
+                         </FormFeedback>
                        </FormGroup>
                          
                           {/* password field */}
@@ -77,7 +104,11 @@ export const Signup = () => {
                         id='password'
                         name='password'
                         onChange={e=>handleChange(e,'password')}
-                        value={data.password}/>
+                        value={data.password}
+                        invalid={error?.errors?.response?.data?.password?true:false}/>
+                        <FormFeedback>
+                             {error?.errors?.response?.data?.password}
+                         </FormFeedback>
                        </FormGroup>
                           
                           {/* email field */}
@@ -89,7 +120,11 @@ export const Signup = () => {
                         id='email'
                         name='email'
                         onChange={e=>handleChange(e,'email')}
-                        value={data.email}/>
+                        value={data.email}
+                        invalid={error?.errors?.response?.data?.email?true:false}/>
+                        <FormFeedback>
+                             {error?.errors?.response?.data?.email}
+                         </FormFeedback>
                        </FormGroup>
 
                         {/* about field */}
@@ -102,7 +137,11 @@ export const Signup = () => {
                         name='about'
                         style={{height:'150px'}}
                         onChange={e=>handleChange(e,'about')}
-                        value={data.about}/>
+                        value={data.about}
+                        invalid={error?.errors?.response?.data?.about?true:false}/>
+                         <FormFeedback>
+                             {error?.errors?.response?.data?.about}
+                         </FormFeedback>
                        </FormGroup>
                        <Container className='text-center'>
                           <Button outline color='light'>Register</Button>

@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { Base } from '../Base'
 import { Col, Container, Row,Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap'
-
+import { toast } from 'react-toastify'
+import { loginUser } from '../user-service'
+import { doLogin } from '../../auth'
+import { useNavigate } from 'react-router-dom'
 export const Login = () => {
+   const navigate=useNavigate()
    const [user,setUser]=useState({
-      email:'',
+      username:'',
       password:''
    })
 
@@ -14,8 +18,40 @@ export const Login = () => {
 
    const resetUser=()=>{
       setUser({
-         email:'',
+         username:'',
          password:''
+      })
+   }
+
+   const handleSubmit = e=>{
+      e.preventDefault()
+      console.log(user)
+      //validations
+      if(user.username.trim()==''||user.password.trim()==''){
+         toast.error('username or password is required !!')
+         return;
+      }
+      //send data to server
+      loginUser(user)
+      .then(resp=>{
+         console.log(resp)
+         //save data to session storage
+         doLogin(resp,()=>{
+            console.log('login detail is saved to session storage')
+            navigate('/user/dashboard')
+         })
+         toast.success('Login Success')
+      })
+      .catch(error=>{
+         console.log(error)
+         if(error.response.status===401 ){
+            toast.error(error.response.message)
+         }
+         else if(error.response.status===404){
+            toast.error(error.response.message)
+         }
+         else
+         toast.error('Something went wrong on server !!')
       })
    }
 
@@ -36,7 +72,7 @@ export const Login = () => {
                     <CardBody>
                         {/* creating form */}
 
-                       <Form>
+                       <Form onSubmit={handleSubmit}>
                         {/* email field */}
                        
                        <FormGroup>
@@ -45,9 +81,9 @@ export const Login = () => {
                         type='text'
                         placeholder='Enter Email'
                         id='email'
-                        name='email'
-                        onChange={e=>handleChange(e,'email')}
-                        value={user.email}/>
+                        name='username'
+                        onChange={e=>handleChange(e,'username')}
+                        value={user.username}/>
                        </FormGroup>
                          
                           {/* password field */}
