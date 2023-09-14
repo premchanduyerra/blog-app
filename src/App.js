@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { User } from './components/User';
 import { Dashboard } from './components/Pages/user-module/Dashboard';
+import { ProfileInfo } from './components/Pages/user-module/ProfileInfo';
 function App() {
   return (
    
@@ -24,6 +25,8 @@ function App() {
          <Route path="/services" element={<Services/>}/>
          <Route path="/user" element={<User/>}>
             <Route path='dashboard' element={<Dashboard/>}/>
+            <Route path='profile-info' element={<ProfileInfo/>}/>
+           
          </Route>
       </Routes>
      

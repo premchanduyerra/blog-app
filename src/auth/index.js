@@ -30,5 +30,5 @@ export const getCurrentUserDetails=()=>{
         return JSON.parse(sessionStorage.getItem('data')).user
     }
     else
-    return false;
+    return undefined;
 }
