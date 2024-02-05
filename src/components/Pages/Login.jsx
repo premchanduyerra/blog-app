@@ -27,7 +27,7 @@ export const Login = () => {
       e.preventDefault()
       console.log(user)
       //validations
-      if(user.username.trim()==''||user.password.trim()==''){
+      if(user.username.trim()===''||user.password.trim()===''){
          toast.error('username or password is required !!')
          return;
       }

@@ -12,7 +12,6 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText,
   } from 'reactstrap'
 import { doLogout, getCurrentUserDetails, isLoggedIn } from '../auth'
 import { toast } from 'react-toastify'
@@ -43,13 +42,20 @@ export const CustomNavbar = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink tag={ReactLink} to="/about">New Feed</NavLink>
+              <NavLink tag={ReactLink} to="/about1">New Feed</NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={ReactLink} to="/about">About</NavLink>
             </NavItem>
+
             <NavItem>
               <NavLink tag={ReactLink} to="/services">Services</NavLink>
+            </NavItem> 
+            <NavItem>
+              <NavLink tag={ReactLink} to="/products">products</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={ReactLink} to="/users">users</NavLink>
             </NavItem>
             
             <UncontrolledDropdown nav inNavbar>
@@ -61,7 +67,20 @@ export const CustomNavbar = () => {
                 <DropdownItem divider />
                 <DropdownItem>Youtube</DropdownItem>
                 <DropdownItem>Linked</DropdownItem>
-                <DropdownItem>Facebook</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/componentState">componentState</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/componentStateFunction">componentStateFunction</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/TimerClass">TimerClass</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/ClassTimer">ClassTimer</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/httpcall">httpcall</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/withoutusecontext">withoutusecontext</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/callbackhook">callbackhook</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/Counter">Counter</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/FunctionTimer">FunctionTimer</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/DocTitle">DocTitle</DropdownItem>
+                <DropdownItem tag={ReactLink} to="/UserFormUsinhHook">UserFormUsinhHook</DropdownItem>
+                
+                
+                
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

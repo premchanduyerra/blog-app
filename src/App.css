@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.active{  
+  background-color: #f7faff !important;
+  color: #282c34  !important;
+  border-radius: 3px;
+  font-weight: 700 !important;
+  transition-delay: 0.2s !important;
+}
