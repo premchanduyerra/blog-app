@@ -42,7 +42,7 @@ export const CustomNavbar = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink tag={ReactLink} to="/about1">New Feed</NavLink>
+              <NavLink tag={ReactLink} to="/about1">New Feeddddddd</NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={ReactLink} to="/about">About</NavLink>
